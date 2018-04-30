@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3001
 
 function cookieCreator( x, req, res){
 	var cookieVal = parseInt(req['cookies'][x]);
-	if(typeof cookieVal !== "number" || cookieVal > 99) cookieVal = 1;
+	if(typeof cookieVal !== "number" || isNaN(cookieVal) || cookieVal > 99) cookieVal = 1;
 	else cookieVal++;
 	res.cookie(x, cookieVal, { maxAge: 1000 * 60 * 60 * 24, httpOnly: false })
 	res.send()
